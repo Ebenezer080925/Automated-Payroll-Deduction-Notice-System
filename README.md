@@ -20,7 +20,14 @@ Personal Details are closed
 ## Then also move to the Statement pdf to save out the specicfic customer Statement then save as pdf 
 ![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/Statement%20pdf.png)
 
+## The Drafted image after saving the pdfs
+![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/Drafted%20Image.png)
+
+
+The Automations does this process repeatedly for all this customers 
 
 # n8n version 
 ![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/n8n%20Workflow%20.png)
 [Click here to view the JSON Code](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/Email%20and%20pdf%20download%20Automation%20sender.json)
+
+
