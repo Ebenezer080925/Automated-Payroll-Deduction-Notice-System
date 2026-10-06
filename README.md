@@ -11,7 +11,7 @@ README.md
 demo-screenshots/
 
 Personal Details are closed 
-![]()
+![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/Picking%20sheet.png)
 ![]()
 
 
