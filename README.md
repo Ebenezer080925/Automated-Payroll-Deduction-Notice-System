@@ -37,6 +37,6 @@ The Automations does this process repeatedly for all this customers
  Fromm the first command to run the full process RunFULLSSSAutomation -> GetPageRange -> GenerateSSSPdf -> SplitStatementPdf -> SendCustomerEmailFull  
  which is now in .display so the person sending can view manually before sending and also be sent automatically by changing it from .Display to.Send 
 
- ![]()
+ ![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/Screenshot%202026-10-06%20225750.png)
  That's it in the display form bfore sending already loaded in draft which can be converted to direct send 
 
