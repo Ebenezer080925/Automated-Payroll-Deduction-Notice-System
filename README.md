@@ -11,11 +11,14 @@ README.md
 demo-screenshots/
 
 Personal Details are closed 
-## This is where the specifi details of the employees detail to work with will be picked 
+## This is where the specifi details of the customer detail to work with will be picked 
 ![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/Picking%20sheet.png)
 
-## After picking the specific employee detials it then goes to the sheet where the SSS details is filtered out and then save specific persons own as pdf
+## After picking the specific customer detials it then goes to the sheet where the SSS details is filtered out and then save specific persons own as pdf
 ![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/pdf%20sheet.png)
+
+## Then also move to the Statement pdf to save out the specicfic customer Statement then save as pdf 
+![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/Statement%20pdf.png)
 
 
 # n8n version 
