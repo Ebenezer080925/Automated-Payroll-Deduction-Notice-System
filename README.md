@@ -12,4 +12,4 @@ demo-screenshots/
 
 
 # n8n version 
-![]()
+![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/n8n%20Workflow%20.png)
