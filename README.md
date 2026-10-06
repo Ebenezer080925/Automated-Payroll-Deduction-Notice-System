@@ -32,5 +32,11 @@ The Automations does this process repeatedly for all this customers
  The process is go to the Mail sheet pick the specific Customer download the statement which has been already loaded in my drive then filter put the SSS then download as pdf then chnage the names of the pdfs both to the name of the customer draft the mail and then send the mail to there email which picked ealier in the mail sheet 
 
  # Excel-vba-version 
+ ![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/Vba%20Codes%20.png)
+ The Vba macro code has abput 5 module with each module have different codes doing different works 
+ Fromm the first command to run the full process RunFULLSSSAutomation -> GetPageRange -> GenerateSSSPdf -> SplitStatementPdf -> SendCustomerEmailFull  
+ which is now in .display so the person sending can view manually before sending and also be sent automatically by changing it from .Display to.Send 
+
  ![]()
+ That's it in the display form bfore sending already loaded in draft which can be converted to direct send 
 
