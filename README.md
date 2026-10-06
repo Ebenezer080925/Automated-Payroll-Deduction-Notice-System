@@ -10,6 +10,15 @@ README.md
     modules/ (exported .bas files, readable without opening Excel)
 demo-screenshots/
 
+## The problem 
+###  1.A business needed to send monthly SSS deduction notices to 400++ customers, each with a personalized PDF breakdown cut from a combined spreadsheet, plus a page extracted from a 2,500+ page combined statement PDF.
+###  2.Why two versions — one client runs cloud-based tooling (n8n), another relies on existing on-premise Excel/Outlook — you adapted the same logic to both environments.
+###  3.Technical challenges solved — this is the part that actually impresses people reading code:
+    -Programmatic PDF generation from spreadsheet data with no native PDF tool (Google Sheets export trick / Excel's ExportAsFixedFormat)
+    -Automatically locating and extracting specific page ranges from a massive combined PDF using text-scanning
+    -Safe, resumable batch processing (loop sequencing, rate-limit handling)
+###  4.Outcome — quantify it: "Reduced a previously 100% manual monthly task to a single click, processing 2,500+ pages and 60+ personalized emails automatically"
+
 Personal Details are closed 
 ## This is where the specifi details of the customer detail to work with will be picked 
 ![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/Picking%20sheet.png)
