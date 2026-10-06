@@ -1,0 +1,521 @@
+{
+  "name": "Email and pdf download Automation sender",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        480,
+        624
+      ],
+      "id": "1174d24d-2535-4ffd-a3b8-92c5ece5f62d",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const item = $input.item;\nconst dbName = $('Loop Over Items').item.json[\"DB NAME\"];\nconst safeName = String(dbName).replace(/[^a-zA-Z0-9]+/g, '_').replace(/^_+|_+$/g, '');\n\nif (item.binary && item.binary.statement_pdf) {\n  item.binary.statement_pdf.fileName = `${safeName}_Statement.pdf`;\n}\nif (item.binary && item.binary.sss_pdf) {\n  item.binary.sss_pdf.fileName = `${safeName}_SSS.pdf`;\n}\n\nreturn item;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2112,
+        624
+      ],
+      "id": "1cc43116-2105-4aef-b9dc-9eabeb119e12",
+      "name": "Rename PDFs"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1CdvgiV6m9dhlPE8oPa4QeMPZ8a_vtEKamz65RVrZWEo",
+          "mode": "list",
+          "cachedResultName": "JANUARY SSS PAYMENT..",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CdvgiV6m9dhlPE8oPa4QeMPZ8a_vtEKamz65RVrZWEo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1503836806,
+          "mode": "list",
+          "cachedResultName": "Mail sheet ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CdvgiV6m9dhlPE8oPa4QeMPZ8a_vtEKamz65RVrZWEo/edit#gid=1503836806"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        672,
+        624
+      ],
+      "id": "03dc5861-2e26-4bee-9cf3-3b805364bf5b",
+      "name": "Mail sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "mXQEAAfYLTxGyXHS",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1GRo8oNchu_8WF6E1lBbIuMC6PC1LBDGN",
+          "mode": "list",
+          "cachedResultName": "customer statement.pdf",
+          "cachedResultUrl": "https://drive.google.com/file/d/1GRo8oNchu_8WF6E1lBbIuMC6PC1LBDGN/view?usp=drivesdk"
+        },
+        "options": {
+          "binaryPropertyName": "full_statement_pdf"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        848,
+        624
+      ],
+      "id": "f1c01848-9f76-477a-b5a8-7cc21e7ad2ec",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "AYkslsQcLrrKGT4z",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1104,
+        624
+      ],
+      "id": "3b839b29-2bab-4d73-8bb9-fb8f53a3a001",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1CdvgiV6m9dhlPE8oPa4QeMPZ8a_vtEKamz65RVrZWEo",
+          "mode": "list",
+          "cachedResultName": "JANUARY SSS PAYMENT..",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CdvgiV6m9dhlPE8oPa4QeMPZ8a_vtEKamz65RVrZWEo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1856274888,
+          "mode": "list",
+          "cachedResultName": "SSS_EXPORT",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CdvgiV6m9dhlPE8oPa4QeMPZ8a_vtEKamz65RVrZWEo/edit#gid=1856274888"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": 2,
+            "DBCodeInput": "={{ $json[\"DB CODE\"] }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "DBCodeInput",
+              "displayName": "DBCodeInput",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1344,
+        432
+      ],
+      "id": "d06fc571-e34d-4498-b1d0-eb2bc61cd73c",
+      "name": "Write DB-CODE to SSS_EXPORT",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "mXQEAAfYLTxGyXHS",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://docs.google.com/spreadsheets/d/1CdvgiV6m9dhlPE8oPa4QeMPZ8a_vtEKamz65RVrZWEo/export?format=pdf&gid=1856274888&range=A1:J60&portrait=true&fitw=true",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 3000
+            }
+          },
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "sss_pdf"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1552,
+        432
+      ],
+      "id": "a9929ef0-61bb-4812-9c76-bea134a425ff",
+      "name": "Export SSS PDF"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1CdvgiV6m9dhlPE8oPa4QeMPZ8a_vtEKamz65RVrZWEo",
+          "mode": "list",
+          "cachedResultName": "JANUARY SSS PAYMENT..",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CdvgiV6m9dhlPE8oPa4QeMPZ8a_vtEKamz65RVrZWEo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2100239308,
+          "mode": "list",
+          "cachedResultName": "Statement Index",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CdvgiV6m9dhlPE8oPa4QeMPZ8a_vtEKamz65RVrZWEo/edit#gid=2100239308"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "DB CODE",
+              "lookupValue": "={{ $json[\"DB CODE\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1344,
+        624
+      ],
+      "id": "0f4bf33b-0ccd-4440-9fe5-b5af5b23c8ee",
+      "name": "Statement Index lookup",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "mXQEAAfYLTxGyXHS",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1552,
+        624
+      ],
+      "id": "c04b9d42-2792-4c4a-801e-c0f96b0a1bb8",
+      "name": "Merge PDF Data"
+    },
+    {
+      "parameters": {
+        "operation": "split",
+        "binaryPropertyName": "full_statement_pdf",
+        "splitMode": "ranges",
+        "ranges": "={{ $json[\"Start Page\"] }}-{{ $json[\"End Page\"] }}",
+        "splitOutputProperty": "statement_pdf"
+      },
+      "type": "@prokodo/n8n-nodes-pdf-toolkit.prokodoPdfToolkit",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        624
+      ],
+      "id": "b3c117a0-dd51-4c55-8cb2-26a4a44b7d27",
+      "name": "PDF Toolkit",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1968,
+        528
+      ],
+      "id": "045ea7b7-b138-41ab-af78-2644d91ba50c",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f1fa1f69-bb17-43f2-9978-6bf34c59ed3d",
+              "name": "email_body",
+              "value": "=Dear {{ $('Loop Over Items').item.json[\"DB NAME\"] }},<br><br>We trust this message finds you well.<br><br>Please be informed that the total computed SSS amount for June to be deducted for direct payment to the Sales Team is # {{ $('Loop Over Items').item.json[\"SSS AMOUNT\"] }} <br><br>Kindly confirm alignment or raise any objections within Forty-Eight (48) hours of receipt of this communication.<br><br>Please note that failure to respond within the stipulated 48-hour window will be deemed as your No-Objection Confirmation (NOC), and the data will be considered final for further processing.<br><br>Warm regards,<br>TGI Distri Ltd.",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2304,
+        624
+      ],
+      "id": "e96dbf1c-24b5-4910-9b87-985cd2b1545e",
+      "name": "Build message"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Loop Over Items').item.json[\"Email\"] }}",
+        "subject": "=SSS Deduction Notice - {{ $('Loop Over Items').item.json[\"DB CODE\"] }}",
+        "message": "={{ $json[\"email_body\"] }}",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "sss_pdf"
+              },
+              {
+                "property": "statement_pdf"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2512,
+        624
+      ],
+      "id": "99248f77-8f14-4c34-9d05-902923093b4d",
+      "name": "Send email",
+      "webhookId": "f319f0b6-6c5a-4b46-9667-761e1a54af18",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "2NNAuRNKFjju0qSo",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Mail sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rename PDFs": {
+      "main": [
+        [
+          {
+            "node": "Build message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mail sheet": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Write DB-CODE to SSS_EXPORT",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Statement Index lookup",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge PDF Data",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Write DB-CODE to SSS_EXPORT": {
+      "main": [
+        [
+          {
+            "node": "Export SSS PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Export SSS PDF": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Statement Index lookup": {
+      "main": [
+        [
+          {
+            "node": "Merge PDF Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge PDF Data": {
+      "main": [
+        [
+          {
+            "node": "PDF Toolkit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF Toolkit": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Rename PDFs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build message": {
+      "main": [
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send email": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "b55498c7-5436-4684-9d35-62ad80a5749e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d455cac9d8b091ddfc5711db06ac2b087c92535a7ecc59f7e9da72fa2c233451"
+  },
+  "nodeGroups": [],
+  "id": "9xOzEKjzzTN5Sfsc",
+  "tags": []
+}
