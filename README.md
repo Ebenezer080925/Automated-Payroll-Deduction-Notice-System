@@ -10,6 +10,10 @@ README.md
     modules/ (exported .bas files, readable without opening Excel)
 demo-screenshots/
 
+Personal Details are closed 
+![]()
+![]()
+
 
 # n8n version 
 ![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/n8n%20Workflow%20.png)
