@@ -13,4 +13,4 @@ demo-screenshots/
 
 # n8n version 
 ![](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/n8n%20Workflow%20.png)
-[Click here to view the JSON Code]()
+[Click here to view the JSON Code](https://github.com/Ebenezer080925/Automated-Payroll-Deduction-Notice-System/blob/main/Email%20and%20pdf%20download%20Automation%20sender.json)
